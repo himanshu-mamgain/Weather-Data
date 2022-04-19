@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+p {
+    font-size: 1.3rem;
+}
+
+img {
+    position: absolute;
+    top: -3px;
+    right: 330px;
+}

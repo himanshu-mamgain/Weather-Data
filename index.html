@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Api</title>
+    <link rel="icon" href="https://www.freeiconspng.com/uploads/weather-icon-png-2.png" type="image/png">
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+    <h1>Check Weather of your city</h1>
+    <div class="form-container">
+        <form action="/" method="post">
+            <input type="text" placeholder="Enter City Name" name="cityName" required>
+            <button type="submit">Get Weather</button>
+        </form>
+    </div>
+    <div class="clock-container">
+        <h2>Current Time</h2>
+        <p id="show"></p>
+    </div>
+    <script>
+        setInterval(function() {
+            date = new Date();
+            let time = date.getHours() + " : " + date.getMinutes() + " : " + date.getSeconds();
+            document.getElementById('show').innerHTML = time;
+        }, 1000);
+    </script>
+</body>
+</html>
