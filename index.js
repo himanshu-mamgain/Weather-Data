@@ -27,7 +27,7 @@ app.post("/", function(req, res) {
             const weatherDescription = weatherData.weather[0].description;
             const weatherIcon = weatherData.weather[0].icon;
             const imageUrl = "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
-            fs.readFile('output.html', function(err, data) {
+            fs.readFile(__dirname + 'output.html', function(err, data) {
                 res.writeHead(200, {'Content-Type' : 'text/html'});
                 res.write(data);
                 res.write("<p>The weather is currently " + weatherDescription + "</p>");
