@@ -18,14 +18,14 @@ app.post("/", function(req, res) {
     const query = req.body.cityName;
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${process.env.APPID}`;
 
-    https.get(url, function(response) {
+    https.get(url, async function(response) {
         console.log(response.statusCode);
 
         response.on("data", function(data) {
-            const weatherData = JSON.parse(data) //to get data as object
-            const temp = weatherData.main.temp; //to select specific data from object
-            const weatherDescription = weatherData.weather[0].description;
-            const weatherIcon = weatherData.weather[0].icon;
+            const weatherData = await JSON.parse(data) //to get data as object
+            const temp = await weatherData.main.temp; //to select specific data from object
+            const weatherDescription = await weatherData.weather[0].description;
+            const weatherIcon = await weatherData.weather[0].icon;
             const imageUrl = "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
             fs.readFile(__dirname + '/output.html', function(err, data) {
                 res.writeHead(200, {'Content-Type' : 'text/html'});
