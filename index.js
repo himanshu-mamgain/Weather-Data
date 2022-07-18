@@ -14,14 +14,14 @@ app.get("/", function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.post("/", async function(req, res) {
+app.post("/", function(req, res) {
     const query = req.body.cityName;
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${process.env.APPID}`;
 
     https.get(url, function(response) {
         console.log(response.statusCode);
 
-        response.on("data", function(data) {
+        response.on("data", async function(data) {
             const weatherData = await JSON.parse(data) //to get data as object
             const temp = await weatherData.main.temp; //to select specific data from object
             const weatherDescription = await weatherData.weather[0].description;
