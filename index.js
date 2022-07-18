@@ -14,11 +14,11 @@ app.get("/", function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.post("/", function(req, res) {
+app.post("/", async function(req, res) {
     const query = req.body.cityName;
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${process.env.APPID}`;
 
-    https.get(url, async function(response) {
+    https.get(url, function(response) {
         console.log(response.statusCode);
 
         response.on("data", function(data) {
