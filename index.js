@@ -22,14 +22,18 @@ app.post("/", function(req, res) {
     https.get(url, function(response) {
         console.log(response.statusCode);
 
-        response.on("data", async function(data) {
-            const weatherData = await JSON.parse(data) //to get data as object
-            const temp = await weatherData.main.temp; //to select specific data from object
-            const weatherDescription = await weatherData.weather[0].description;
-            const weatherIcon = await weatherData.weather[0].icon;
-            const imageUrl = "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
-            const cityName = query.charAt(0).toUpperCase() + query.slice(1);
-            res.render('output', {query: cityName, temp: temp, weatherDescription: weatherDescription, imageUrl: imageUrl});
+        response.on("data", function(data) {
+            try {
+                const weatherData = JSON.parse(data) //to get data as object
+                const temp = weatherData.main.temp; //to select specific data from object
+                const weatherDescription = weatherData.weather[0].description;
+                const weatherIcon = weatherData.weather[0].icon;
+                const imageUrl = "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
+                const cityName = query.charAt(0).toUpperCase() + query.slice(1);
+                res.render('output', {query: cityName, temp: temp, weatherDescription: weatherDescription, imageUrl: imageUrl});
+            } catch(err) {
+                console.log(err);
+            }
         });
     });
 });
