@@ -33,6 +33,7 @@ app.post("/", function(req, res) {
                 res.render('output', {query: cityName, temp: temp, weatherDescription: weatherDescription, imageUrl: imageUrl});
             } catch(err) {
                 console.log(err);
+                res.redirect('/');
             }
         });
     });
