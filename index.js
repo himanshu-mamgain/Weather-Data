@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require('express');
 const bodyParser = require('body-parser'); //to get form input with name field
 const https = require('https');
-const fs = require('fs');
 
 const app = express();
 

@@ -21,7 +21,7 @@ img {
     border-radius: 50%;
 }
 
-button {
+.back-btn {
     display: block;
     margin: 30px auto;
     padding: 8px 14px;
@@ -32,7 +32,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.back-btn:hover {
     background-color: #777;
     color: #fff;
 }
