@@ -10,13 +10,15 @@ app.use(express.static('public/css')) //to use css file //don't put ;
 
 app.use(bodyParser.urlencoded({extended : true})); //to use body parser
 
+app.set('view engine', 'ejs');
+
 app.get("/", function(req, res) {
-    res.sendFile(__dirname + '/index.html');
+    res.status(200).render('home');
 });
 
-app.post("/", function(req, res) {
+app.post(["/", '/change'], function(req, res) {
     const query = req.body.cityName;
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${process.env.APPID}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${process.env.APPID}&units=metric`;
 
     https.get(url, function(response) {
         console.log(response.statusCode);
@@ -27,14 +29,8 @@ app.post("/", function(req, res) {
             const weatherDescription = await weatherData.weather[0].description;
             const weatherIcon = await weatherData.weather[0].icon;
             const imageUrl = "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
-            fs.readFile(__dirname + '/output.html', function(err, data) {
-                res.writeHead(200, {'Content-Type' : 'text/html'});
-                res.write(data);
-                res.write("<p>The weather is currently " + weatherDescription + "</p>");
-                res.write("<img src=" + imageUrl + ">");
-                res.write("<h1>The temperature in " + query + " is " + temp + "degrees Celcius.</h1>");
-                res.send();
-            });
+            const cityName = query.charAt(0).toUpperCase() + query.slice(1);
+            res.render('output', {query: cityName, temp: temp, weatherDescription: weatherDescription, imageUrl: imageUrl});
         });
     });
 });

@@ -2,12 +2,14 @@
     box-sizing: border-box;
 }
 
-body {
+.weather-data-container {
+    width: fit-content;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
     border: 1px solid black;
     border-radius: 5px;
-    margin: 10px;
+    margin: 10px auto;
+    padding: 5px 15px;
 }
 
 p {
@@ -15,7 +17,22 @@ p {
 }
 
 img {
-    position: absolute;
-    top: -3px;
-    right: 330px;
+    background-color: #777;
+    border-radius: 50%;
+}
+
+button {
+    display: block;
+    margin: 30px auto;
+    padding: 8px 14px;
+    font-weight: 600;
+    font-size: 1.3rem;
+    background-color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #777;
+    color: #fff;
 }
