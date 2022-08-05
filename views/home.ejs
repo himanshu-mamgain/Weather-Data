@@ -7,7 +7,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Weather API</title>
+        <title>Weather Search App</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css" type="text/css">
@@ -25,13 +25,23 @@
         </div>
         <div class="clock-container">
             <h2>Current Time</h2>
-            <p id="show"></p>
+            <p id="time"></p>
         </div>
-        <script>
-            setInterval(function() {
+        <div class="date-container">
+            <h2>Today Date</h2>
+            <p id="date"></p>
+        </div>
+        <script>       
+            setInterval(() => {
                 date = new Date();
                 let time = date.getHours() + " : " + date.getMinutes() + " : " + date.getSeconds();
-                document.getElementById('show').innerHTML = time;
+                document.getElementById('time').innerHTML = time;
+            }, 1000);
+            setInterval(() => {
+                const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+                date = new Date();
+                let currentDate = date.getDay() + " / " + month[date.getMonth()] + " / " + date.getFullYear();
+                document.getElementById('date').innerHTML = currentDate;
             }, 1000);
         </script>
     </body>
